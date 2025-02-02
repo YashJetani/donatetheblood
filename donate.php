@@ -120,7 +120,8 @@ if (isset($_POST['submit'])) {
 		}
 		
 		if (isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['c_password']) && !empty($_POST['c_password'])) {
-				if (preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/', $_POST['password'])) {
+			$passptn = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
+				if (preg_match($passptn ,$_POST['password'])) {
 					if ($_POST['password'] == $_POST['c_password']) {
 						$password = $_POST['password'];
 						// print_r($password);die;
@@ -188,6 +189,8 @@ if (isset($_POST['submit'])) {
 			</button>
 		  </div>';
 		}
+
+
 		if (isset($name) && isset($blood_group) && isset($gender) && isset($day) && isset($month) && isset($year) && isset($email) && isset($contact_no) && isset($city) && isset($password)) {
 
 			$DonorDOB = $year."-".$month."-".$day;
@@ -214,10 +217,6 @@ if (isset($_POST['submit'])) {
 			}
 
 		}
-
-
-
-
 
 
 

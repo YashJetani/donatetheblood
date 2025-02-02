@@ -188,22 +188,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 		if (isset($_POST['email']) && !empty($_POST['email'])) {
 			$pattern = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/';
 			if (preg_match($pattern, $_POST['email'])) {
-				$checkemail = $_POST['email'];
-
-				$sql = "SELECT email FROM donor WHERE email='$checkemail'";
-
-				$result = mysqli_query($connection, $sql);
-
-				if (mysqli_num_rows($result) > 0) {
-					$emailError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<strong>email is already exist.</strong>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
-				</button>
-			  </div>';
-				} else {
-					$email = $_POST['email'];
-				}
+				$email = $_POST['email'];
 			} else {
 				$emailError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>invalid email</strong>
@@ -236,13 +221,14 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>';
-				?>
+		 	?>
 				<script>
 					function myfunction() {
 						location.reload();
 					}
 				</script>
-				<?php
+			 <?php
+				
 			} else {
 				$updateError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Oops,Data not updated</strong>
@@ -254,7 +240,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 
 		}
 
-
+	
 
 
 
@@ -297,47 +283,45 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 
 	if (isset($_POST['update_pass'])) {
 
-
-
 		if (isset($_POST['old_password']) && !empty($_POST['old_password']) && isset($_POST['c_password']) && !empty($_POST['c_password']) && isset($_POST['new_password']) && !empty($_POST['new_password'])) {
+
 			$oldpassword = md5($_POST['old_password']);
-			if ($oldpassword = $dbpassword) {
+			
+				if ($oldpassword == $dbpassword) {
 
 
-				if (preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/', $_POST['new_password'])) {
-					if ($_POST['new_password'] == $_POST['c_password']) {
-						$password = md5($_POST['new_password']);
+					if (preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $_POST['new_password'])) {
+						if ($_POST['new_password'] == $_POST['c_password']) {
+							$password = md5($_POST['new_password']);
+							
 						// print_r($password);die;
 						// $hashed_password = md5($password);
-					} else {
+						} else {
 						$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 						<strong>password and confirm password are not same.</strong>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
 					</div>';
+						}
+					} else {
+						// echo"<pre>";print_r('asfdjnk');exit;
+						$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<strong>password must be strong.</strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>';
 					}
 				} else {
-					// echo"<pre>";print_r('asfdjnk');exit;
-					$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					<strong>password must be strong.</strong>
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button>
-				</div>';
+						$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<strong>please enter valid password</strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>';
 				}
-			} else {
-				$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					<strong>please enter valid password</strong>
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-					</button>
-				</div>';
-			}
-
-
-			// if (strlen($_POST['password']) >= 6) { aa line ma umang a sudharo kari ne nicheni print karavi che 
-
+// if (strlen($_POST['password']) >= 6) { aa line ma umang a sudharo kari ne nicheni print karavi che 
 		} else {
 			$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 					<strong>please fill password filed</strong>
@@ -630,7 +614,8 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 							<input type="text" name="email" id="email" placeholder="Email"
 								pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Please write correct email"
 								class="form-control" value="<?php if (isset($email))
-									echo $email; ?>">
+								// update email verification chagnged by yash jetani
+								echo $email; ?>">
 							<?php
 							if (isset($emailError))
 								echo $emailError;
@@ -734,6 +719,9 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 							<button class="btn btn-lg btn-danger center-aligned" type="submit" name="update_pass">update
 								password</button>
 						</div>
+
+						<!-- password verify with chatgpt code  -->
+
 
 					</form>
 				</div>
