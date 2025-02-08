@@ -32,7 +32,7 @@
 			$sql = "UPDATE donor SET save_life_date='$crntDate'  WHERE id='$userID' ";
 
 			if(mysqli_query($connection,$sql)){
-			$_SESSION['save_life_date']=$crntDates;
+			$_SESSION['save_life_date']=$crntDate;
 				header("location: index.php");
 			} else
 				{
