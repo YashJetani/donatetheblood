@@ -1,3 +1,15 @@
+<?php
+	include 'config.php';
+//	if (headers_sent($file, $line)) {
+//		    die("Headers already sent in $file on line $line");
+//	}
+	session_start();
+	if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+		include 'usernav.php';
+	}else{
+		include 'navigation.php';
+	}
+?>
 <!DOCTYPE html>
 
 	<head>
@@ -32,17 +44,5 @@
 	</head>
 
 
+ 
 
-<?php 
-            include 'config.php';
-            // include('..\include\config.php');
-
-            session_start();
-            if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
-                include 'usernav.php';
-            }else{
-                include 'navigation.php';
-            }
-
-           
-?>

@@ -1,6 +1,5 @@
- <?php
+<?php
 	include ('include/header.php');
-
 ?>
 <div class="container-fluid header-img">
 	<div class="row">

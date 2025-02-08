@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	include('../include/config.php');
+	include('include/navigation.php');
+?>
+
 <!DOCTYPE html>
 
 	<head>
@@ -34,10 +40,4 @@
     <![endif]-->
 
 	</head>
-<?php 
-    
-    session_start();
-    include('../include/config.php');
-    include('include/navigation.php');
-   
-?>
+

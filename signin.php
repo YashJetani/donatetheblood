@@ -1,8 +1,5 @@
-<?php 
-
-	//include header file
+<?php
 	include ('include/header.php');
-
 	if(isset($_POST['SignIn'])){
 
 
@@ -39,11 +36,11 @@
 
 					$_SESSION['user_id'] = $row['id'];
 					$_SESSION['name'] = $row['name'];
-					$_SESSION['save_life_date'] = $row['save_life_date'];
-				
-
+					$_SESSION['save_life_date'] = $row['save_life_date'];	
+				if (headers_sent($file, $line)) {
+	    				die("Headers already sent in $file on line $line");
+				}
 					header('location: user/index.php');
-					
 				}
 			}
 			else{

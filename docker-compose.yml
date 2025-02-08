@@ -5,9 +5,11 @@ services:
     build: .
     container_name: php_app
     ports:
-      - "8080:80"
+      - "8000:80"
     volumes:
       - .:/var/www/html
+    networks:
+      - donatetheblood
     depends_on:
       - db
 
@@ -22,6 +24,8 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - donatetheblood
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -33,6 +37,10 @@ services:
       PMA_HOST: db
     depends_on:
       - db
+    networks:
+      - donatetheblood
 
 volumes:
   db_data:
+networks:
+  donatetheblood:

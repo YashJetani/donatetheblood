@@ -1,6 +1,5 @@
-
-<?php 
-
+<?php
+//	session_start();
 	include 'include/header.php'; 
 	
 	if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
@@ -32,8 +31,10 @@
 			$sql = "UPDATE donor SET save_life_date='$crntDate'  WHERE id='$userID' ";
 
 			if(mysqli_query($connection,$sql)){
-			$_SESSION['save_life_date']=$crntDates;
-				header("location: index.php");
+			$_SESSION['save_life_date']= $crntDate;
+		//	header("location: index.php");
+			//	exit;
+				// exit edit by yash
 			} else
 				{
 				$submitError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -45,6 +46,13 @@
 			}
 			
 		}
+?>
+<?php
+}else{
+	header("location: ../index.php");
+
+}
+include 'include/footer.php'
 ?>
 
 <style>
@@ -104,18 +112,14 @@
 							<div class="test-success text-center" id="data" style="margin-top: 20px;"><?php if(isset($showForm)) echo $showForm; ?></div>
 							
 							<?php 
-								$safeDate = $_SESSION['save_life_date'];
-								
+								//$safeDate = $_SESSION['save_life_date'];
+								$safeDate = isset($_SESSION['save_life_date']) ? $_SESSION['save_life_date'] : '0';
 								if($safeDate == '0')
 								{
-
-									echo '<form target="" method="post">
-									<button style="margin-top: 20px;" name="date" id="save_the_life" type="submit" class="btn btn-lg btn-danger center-aligned ">I have already donated</button>
-									</form>';
+																											echo '<form target="" method="post">																													<button style="margin-top: 20px;" name="date" id="save_the_life" type="submit" class="btn btn-lg btn-danger center-aligned ">I have already donated</button>	</form>';
 								}
 								else
 								{
-
 									$start = date_create($safeDate);
 									$end = date_create();
 									$diff = date_diff($start, $end);
@@ -141,33 +145,16 @@
 									
 
 									// echo '<div class="donors_data">
-									// <span class="name">Congratulation !</span>
-									// <br>
-									// <br>
-									// <p>You already save the life. You will donate the blood after three month. We are very thanking full to you.</p>
-									// </div>';
-								}
-
-							?>
-
-							
-
-							
-					
-
-
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
-<?php
-}else{
-	header("location: ../index.php");
-}
-
-include 'include/footer.php'; 
-?>
+								 		 								// 									// <span class="name">Congratulation !</span>
+								 		// 																		// <br>
+									// 																											// <br>
+									// 																																				// <p>You already save the life. You will donate the blood after three month. We are very thanking full to you.</p>
+									// 																																													// </div>';
+								 																																																					}
+						?>
+																																										</div>
+			 		</div>
+			 	</div>
+			 </div>
+																				</div>
+			 											
