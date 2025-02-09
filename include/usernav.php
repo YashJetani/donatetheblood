@@ -1,4 +1,3 @@
-<?php ?>
 <nav id="mainNav" class="navbar fixed-top navbar-default navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="./index.php">DONATETHEBLOOD</a>
   
@@ -25,18 +24,13 @@
       <li class="nav-item">
         <a class="nav-link" href="search.php">Search</a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="signin.php">usernav</a>
-      </li> 
       
       <li class="nav-item">
         <a class="nav-link" href="about.php">About Us</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<?php if(isset($_SESSION['name'])) echo $_SESSION['name']; ?> <!-- Donor Name -->
-        </a>
+<?php if(isset($_SESSION['name'])) echo $_SESSION['name']; ?></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           
           <a class="dropdown-item" href="user/index.php"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>

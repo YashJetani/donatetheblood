@@ -1,8 +1,7 @@
 <?php
+	ob_start();
 	include ('include/header.php');
 	if(isset($_POST['SignIn'])){
-
-
 		if (isset($_POST['email']) && !empty($_POST['email'])) {
 			$email = $_POST['email'];
 		} else {
@@ -36,12 +35,12 @@
 
 					$_SESSION['user_id'] = $row['id'];
 					$_SESSION['name'] = $row['name'];
-					$_SESSION['save_life_date'] = $row['save_life_date'];	
-				if (headers_sent($file, $line)) {
-	    				die("Headers already sent in $file on line $line");
-				}
-					header('location: user/index.php');
-				}
+					$_SESSION['save_life_date'] = $row['save_life_date'];		
+					//header('location: user/index.php');
+					header("Location: user/index.php");
+				}				
+
+				
 			}
 			else{
 				$submitError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">

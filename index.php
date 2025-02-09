@@ -91,7 +91,7 @@
 			Blood donation refers to a practice where people donate their blood to people so it helps them with their health problems. Blood is one of the most essential fluids of our body that helps in the smooth functioning of our body. If the body loses blood in excessive amounts, people to get deadly diseases and even die.
 			Whole blood donation is the most common type of blood donation. During this donation, you donate about a pint (about half a liter) of whole blood. The blood is then separated into its components — red cells, plasma and sometimes platelets.
 			</p>
-			<a href="#" class="btn btn-default btn-lg text-center center-aligned">Become a Life Saver!</a>
+			<a href="donate.php" class="btn btn-default btn-lg text-center center-aligned">Become a Life Saver!</a>
 		</div>
 	</div>
 </div>

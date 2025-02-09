@@ -27,10 +27,6 @@
       </li>
 
       <li class="nav-item">
-	<a class="nav-link" href="../signin.php">signin</a>
-      </li>
-
-      <li class="nav-item">
         <a class="nav-link" href="../about.php">About Us</a>
       </li>
       <li class="nav-item dropdown">

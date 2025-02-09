@@ -1,13 +1,12 @@
 <?php
-	include 'config.php';
-//	if (headers_sent($file, $line)) {
-//		    die("Headers already sent in $file on line $line");
-//	}
-	session_start();
-	if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
-		include 'usernav.php';
-	}else{
-		include 'navigation.php';
+include 'config.php';
+	if (session_status() === PHP_SESSION_NONE) {
+		session_start();	
+		if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+			include 'usernav.php';
+		}else{
+			include 'navigation.php';
+		}
 	}
 ?>
 <!DOCTYPE html>
