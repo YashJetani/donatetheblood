@@ -1,3 +1,4 @@
+<?php ?>
 <nav id="mainNav" class="navbar fixed-top navbar-default navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="../index.php">DONATETHEBLOOD</a>
   
@@ -21,13 +22,13 @@
         <a class="nav-link" href="../donor.php">Donors</a>
       </li>
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="../search.php">Search</a>
-      </li>
+      </li> -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="../signin.php">Signin</a>
-      </li>
+      </li> -->
       
       <li class="nav-item">
         <a class="nav-link" href="../about.php">About Us</a>

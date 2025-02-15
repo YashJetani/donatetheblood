@@ -20,10 +20,10 @@
       <li class="nav-item">
         <a class="nav-link" href="donor.php">Donors</a>
       </li>
-<!-- 
+
       <li class="nav-item">
         <a class="nav-link" href="search.php">Search</a>
-      </li> -->
+      </li>
 
       <!-- <li class="nav-item">
         <a class="nav-link" href="signin.php">Signin</a>
@@ -39,12 +39,12 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           
-          <a class="dropdown-item" href="user/index.php"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+          <a class="dropdown-item" href="receiver/recindex.php"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
 
-          <a class="dropdown-item" href="user/update.php"><i class="fa fa-edit" aria-hidden="true"></i>
+          <a class="dropdown-item" href="reciver/recupdate.php"><i class="fa fa-edit" aria-hidden="true"></i>
 Update Profile</a>
 
-          <a class="dropdown-item" href="user/logout.php">
+          <a class="dropdown-item" href="receiver/logout.php">
           <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
 
 Logout</a>

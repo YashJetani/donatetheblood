@@ -1,6 +1,6 @@
 <?php 
 
-	include 'include/header.php'; 
+	include 'include/recheader.php'; 
 	
 	if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
 
@@ -28,7 +28,7 @@
 			$crntDate = date_create();
 			$crntDate = date_format($crntDate, 'Y-m-d');
 
-			$sql = "UPDATE donor SET save_life_date='$crntDate'  WHERE id='$userID' ";
+			$sql = "UPDATE $table SET save_life_date='$crntDate'  WHERE id='$userID' ";
 
 			if(mysqli_query($connection,$sql)){
 			$_SESSION['save_life_date']=$crntDate;
@@ -73,16 +73,17 @@
 		
 	}
 </style>
-
+ 
 			<div class="container" style="padding: 60px 0;">
 			<div class="row">
 				<div class="col-md-12 col-md-push-1">
 					<div class="panel panel-default" style="padding: 20px;">
 						<div class="panel-body">
-							<?php if (isset($submitError))
-											echo $submitError;
+							<?php 
+							// if (isset($submitError))
+							// 				echo $submitError;
 																?>
-								<div class="alert alert-danger alert-dismissable" style="font-size: 18px; display: none;">
+						<!--		<div class="alert alert-danger alert-dismissable" style="font-size: 18px; display: none;">
     						
     								<strong>Warning!</strong> Are you sure you want a save the life if you press yes, then you will not be able to show before 3 months.
     							
@@ -91,7 +92,7 @@
     								<button class="btn btn-primary" id="yes" name="yes" type="submit">Yes</button>
     								<button class="btn btn-info" id="no" name="no">No</button>
     							</div>
-  							</div>
+  							</div> -->
 							<div class="heading text-center">
 								<h3>Welcome </h3>
 								 <h1><?php if(isset($_SESSION['name'])) echo $_SESSION['name'];  ?>
@@ -103,49 +104,49 @@
 							<div class="test-success text-center" id="data" style="margin-top: 20px;"><?php if(isset($showForm)) echo $showForm; ?></div>
 							
 							<?php 
-								$safeDate = $_SESSION['save_life_date'];
+								// $safeDate = $_SESSION['save_life_date'];
 								
-								if($safeDate == '0')
-								{
+								// if($safeDate == '0')
+								// {
 
-									echo '<form target="" method="post">
-									<button style="margin-top: 20px;" name="date" id="save_the_life" type="submit" class="btn btn-lg btn-danger center-aligned ">I have already donated</button>
-									</form>';
-								}
-								else
-								{
+								// 	echo '<form target="" method="post">
+								// 	<button style="margin-top: 20px;" name="date" id="save_the_life" type="submit" class="btn btn-lg btn-danger center-aligned ">I have already donated</button>
+								// 	</form>';
+								// }
+								// else
+								// {
 
-									$start = date_create($safeDate);
-									$end = date_create();
-									$diff = date_diff($start, $end);
+								// 	$start = date_create($safeDate);
+								// 	$end = date_create();
+								// 	$diff = date_diff($start, $end);
 
-									$diffMonth = $diff->m;
+								// 	$diffMonth = $diff->m;
 								
-									if($diffMonth >= 3)
-									{
-										echo '<form target="" method="post">
-										<button style="margin-top: 20px;" name="date" id="save_the_life" type="submit" class="btn btn-lg btn-danger center-aligned ">I have already donated</button>
-										</form>';
-									}
-									else
-									{
-										echo '<div class="donors_data">
-									<span class="name">Congratulation !</span>
-									<br>
-									<br>
-									<p>You already save the life. You will donate the blood after three month. We are very thanking full to you.</p>
-									</div>';
+								// 	if($diffMonth >= 3)
+								// 	{
+								// 		echo '<form target="" method="post">
+								// 		<button style="margin-top: 20px;" name="date" id="save_the_life" type="submit" class="btn btn-lg btn-danger center-aligned ">I have already donated</button>
+								// 		</form>';
+								// 	}
+								// 	else
+								// 	{
+								// 		echo '<div class="donors_data">
+								// 	<span class="name">Congratulation !</span>
+								// 	<br>
+								// 	<br>
+								// 	<p>You already save the life. You will donate the blood after three month. We are very thanking full to you.</p>
+								// 	</div>';
 
-									}
+								// 	}
 									
 
-									// echo '<div class="donors_data">
-									// <span class="name">Congratulation !</span>
-									// <br>
-									// <br>
-									// <p>You already save the life. You will donate the blood after three month. We are very thanking full to you.</p>
-									// </div>';
-								}
+								// 	// echo '<div class="donors_data">
+								// 	// <span class="name">Congratulation !</span>
+								// 	// <br>
+								// 	// <br>
+								// 	// <p>You already save the life. You will donate the blood after three month. We are very thanking full to you.</p>
+								// 	// </div>';
+								// }
 
 							?>
 

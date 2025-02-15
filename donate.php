@@ -1,9 +1,21 @@
 <?php
 //include header file
 include('include/header.php');
-
+$tableError="";
 if (isset($_POST['submit'])) {
 	if (isset($_POST['term']) === true) {
+		if(isset($_POST['table']) && !empty($_POST['table'])) {
+			$table = ($_POST['table'] === 'donor') ? 'donor' : 'receiver';
+		} else {
+			$tableError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>select your registration type.</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>';
+		  exit;
+		}
+		
 		if (isset($_POST['name']) && !empty($_POST['name'])) {
 			if (preg_match('/^[A-Za-z\s]+$/', $_POST['name'])) {
 				$name = $_POST['name'];
@@ -159,7 +171,7 @@ if (isset($_POST['submit'])) {
 			if (preg_match($pattern, $_POST['email'])) {
 				$checkemail = $_POST['email'];
 
-				$sql = "SELECT email FROM donor WHERE email='$checkemail'";
+				$sql = "SELECT email FROM $table WHERE email='$checkemail'";
 
 				$result = mysqli_query($connection, $sql);
 
@@ -196,8 +208,8 @@ if (isset($_POST['submit'])) {
 			$DonorDOB = $year."-".$month."-".$day;
 
 			$password = md5($password);
-
-			$sql = "INSERT INTO donor (name,gender,email,city,dob,contact_no,save_life_date,password,blood_group) VALUES('$name','$gender','$email','$city','$DonorDOB','$contact_no','0','$password','$blood_group')";
+			
+			$sql = "INSERT INTO $table (name,gender,email,city,dob,contact_no,save_life_date,password,blood_group) VALUES('$name','$gender','$email','$city','$DonorDOB','$contact_no','0','$password','$blood_group')";
 
 			if (mysqli_query($connection, $sql)) {
 				$submitSuccess = '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -234,6 +246,8 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
+
+
 <style>
 	.size {
 		min-height: 0px;
@@ -267,11 +281,127 @@ if (isset($_POST['submit'])) {
 	.red-bar {
 		width: 25%;
 	}
+/* 
+	.modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-content {
+        background:white;
+        padding: 30px;
+		padding-left: 10px;
+		padding-right: 10px;
+        text-align: center;
+        border-radius: 10px;
+		margin-left: 400px;
+		margin-right:400px;
+    }
+    button {
+        background: red;
+        color: white;
+		margin-right: 300px;
+		margin-left: 300px;
+		padding: 10px 20px;
+        border: none;
+		border-radius: 50px;
+        cursor: pointer;
+    } */
+    /* Modal Overlay */
+    .modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    /* Modal Box */
+    .modal-content {
+        background: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        animation: scaleUp 0.3s ease-in-out;
+        position: relative;
+    }
+
+    /* Close Button (X) */
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #888;
+    }
+
+    .close-btn:hover {
+        color: red;
+    }
+
+    /* OK Button */
+    button {
+        background: #ff3b3b;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    button:hover {
+        background: #d63030;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes scaleUp {
+        from { transform: scale(0.8); }
+        to { transform: scale(1); }
+    }
+
 </style>
+<body>
+<div id="errorModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>⚠️ Oops!</h2>
+        <p id="errorMessage">Please select a registration type.</p>
+        <button onclick="closeModal()">OK</button>
+    </div>
+</div>
+<!-- <div id="errorModal" class="modal">
+    <div class="modal-content">
+        <p id="errorMessage">⚠️ Please select a registration pr</p>
+        <button onclick="closeModal()">OK</button>
+    </div>
+</div> -->
+
 <div class="container-fluid red-background size">
 	<div class="row">
 		<div class="col-md-6 offset-md-3">
-			<h1 class="text-center">Donate</h1>
+			<h1 class="text-center">Registration</h1>
 			<hr class="white-bar">
 		</div>
 	</div>
@@ -292,7 +422,18 @@ if (isset($_POST['submit'])) {
 
 			<!-- Error Messages -->
 
-			<form class="form-group" action="" method="post" novalidate="">
+			<form id="signupForm" class="form-group" action="" method="post" novalidate="">
+			<div class="form-group">
+					<label for="name">Register As :</label><br>
+					<select class="form-control demo-default" id="table" name="table" required>
+						<!-- title="please select blood group from the list"> -->
+						<option value="">--- Select ---</option>
+						<?php //if(isset($table)) echo '<option selected="" value="'.$table.'">'.$table.'</option>'; ?>
+						<option value="donor">donor</option>
+						<option value="receiver">receiver</option>
+					</select>
+					<small id="error-message" style="color: red;"></small>
+				</div>
 				<div class="form-group">
 					<label for="fullname">Full Name</label>
 					<input type="text" name="name" id="fullname" placeholder="Full Name" required pattern="[A-Za-z/\s]+"
@@ -307,7 +448,7 @@ if (isset($_POST['submit'])) {
 					<select class="form-control demo-default" id="blood_group" name="blood_group" required
 						title="please select blood group from the list">
 						<option value="">---Select Your Blood Group---</option>
-						<?php if(isset($blood_group)) echo '<option selected="" value="'.$blood_group.'">'.$blood_group.'</option>'; ?>"
+						<?php if(isset($blood_group)) echo '<option selected="" value="'.$blood_group.'">'.$blood_group.'</option>'; ?>
 						<option value="A+">A+</option>
 						<option value="A-">A-</option>
 						<option value="B+">B+</option>
@@ -551,6 +692,38 @@ if (isset($_POST['submit'])) {
 	</div>
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#signupForm").addEventListener("submit", function (event) {
+            let tableSelect = document.getElementById("table");
+            let modal = document.getElementById("errorModal");
+
+            if (tableSelect.value === "") {
+                event.preventDefault(); // Stop form submission
+                modal.style.display = "flex"; // Show popup modal
+            }
+        });
+    });
+
+    function closeModal() {
+        document.getElementById("errorModal").style.display = "none";
+    }
+</script>
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#signupForm").addEventListener("submit", function (event) {
+            let tableSelect = document.getElementById("table");
+
+            if (tableSelect.value === "") {
+                event.preventDefault(); // Stop form submission
+                alert("⚠️ Please select a table name before submitting!"); // Show popup alert
+            }
+        });
+    });
+</script> -->
+
+</body>
 <?php
 //include footer file
 include('include/footer.php');

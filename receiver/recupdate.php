@@ -1,5 +1,5 @@
 <?php
-include 'include/header.php';
+include 'include/recheader.php';
 
 
 
@@ -211,16 +211,17 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 
 			// $password = md5($password);
 
-			$sql = "UPDATE donor SET name='$name',gender='$gender',email='$email',city='$city',dob='$DonorDOB',contact_no='$contact_no',blood_group='$blood_group' WHERE id =" . $_SESSION['user_id'];
+			$sql = "UPDATE receiver SET name='$name',gender='$gender',email='$email',city='$city',dob='$DonorDOB',contact_no='$contact_no',blood_group='$blood_group' WHERE id =" . $_SESSION['user_id'];
 
 			if (mysqli_query($connection, $sql)) {
-				// header("location: update.php");
+				
 				$updatesuccess = '<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<strong> Data Updated Successfully </strong>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				  <span aria-hidden="true">&times;</span>
 				</button>
 			  </div>';
+			 // header("location: recupdate.php");
 		 	?>
 				<script>
 					function myfunction() {
@@ -258,7 +259,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 
 
 	}
-	$sql = "SELECT * FROM donor WHERE id=" . $_SESSION['user_id'];
+	$sql = "SELECT * FROM receiver WHERE id=" . $_SESSION['user_id'];
 
 	$result = mysqli_query($connection, $sql);
 
@@ -331,7 +332,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 				</div>';
 		}
 		if (isset($password)) {
-			$sql = "UPDATE donor SET password='$password'  WHERE id='$userID' ";
+			$sql = "UPDATE receiver SET password='$password'  WHERE id='$userID' ";
 
 			if (mysqli_query($connection, $sql)) {
 				// $_SESSION['save_life_date']=$crntDates;
@@ -429,10 +430,10 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 					<!-- Error Messages -->
 					<?php if (isset($updateError))
 						echo $updateError;
-					if (isset($updatesuccess))
+						if (isset($updatesuccess))
 						echo $updatesuccess;
 						if(isset($showForm)) echo $showForm;
-						if(isset($deletesubmitError)) echo $deletesubmitError;
+						//if(isset($deletesubmitError)) echo $deletesubmitError;
 					?>
 					<form class="form-group" action="" method="post" novalidate="">
 						<div class="form-group">
@@ -759,7 +760,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 
 	<!-- <?php
 } else {
-	header("location:../index.php");
+	header("location:../recindex.php");
 	// include 'include/sidebar.php';
 }
 include 'include/footer.php';

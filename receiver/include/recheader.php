@@ -1,9 +1,7 @@
 <?php 
-    
     session_start();
     include('../include/config.php');
-    include('include/navigation.php');
-   
+    include('include/recnavigation.php'); 
 ?>
 <!DOCTYPE html>
 

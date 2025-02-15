@@ -1,5 +1,5 @@
 <?php
 
-$connection = mysqli_connect("localhost", "root", "", "donatetheblood") or die("Database is not connected " . mysqli_connect_error());
+$connection = mysqli_connect("db", "root", "", "donatetheblood") or die("Database is not connected " . mysqli_connect_error());
 
 ?>

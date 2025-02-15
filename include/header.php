@@ -1,3 +1,25 @@
+<?php
+include 'config.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    if (isset($_SESSION['table'])) {  // Check if table is set
+        if ($_SESSION['table'] === "donor") {
+            include 'usernav.php'; // Load donor navigation
+        } elseif ($_SESSION['table'] === "receiver") {
+            include 'receivernav.php'; // Load receiver navigation
+        } else {
+            include 'navigation.php'; // Default navigation
+        }
+    } else {
+        include 'navigation.php'; // Default navigation if table is missing
+    }
+} else {
+    include 'navigation.php'; // Default for non-logged-in users
+}
+}
+?>
 <!DOCTYPE html>
 
 	<head>
@@ -34,15 +56,69 @@
 
 
 <?php 
-            include 'config.php';
+//            include 'config.php';
             // include('..\include\config.php');
 
-            session_start();
-            if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
-                include 'usernav.php';
-            }else{
-                include 'navigation.php';
-            }
-
-           
+//            session_start();
+//            if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+//                include 'usernav.php';
+//            }else{
+//               include 'navigation.php';
+//            }           
 ?>
+<?php 
+// include 'config.php';
+// session_start();
+
+// if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+//     $user_id = $_SESSION['user_id'];
+
+//     // Check if user exists in the donor table
+//     $query = "SELECT id FROM donor WHERE id = ?";
+//     $stmt = $connection->prepare($query);
+//     $stmt->bind_param("i", $user_id);
+//     $stmt->execute();
+//     $stmt->store_result();
+    
+//     if ($stmt->num_rows > 0) {
+//         include 'usernav.php';  // Load donor navigation
+//     } else {
+//         // Check if user exists in the receiver table
+//         $query = "SELECT id FROM receiver WHERE id = ?";
+//         $stmt = $connection->prepare($query);
+//         $stmt->bind_param("i", $user_id);
+//         $stmt->execute();
+//         $stmt->store_result();
+
+//         if ($stmt->num_rows > 0) {
+//             include 'receivernav.php';  // Load receiver navigation
+//         } else {
+//             include 'navigation.php';  // Default navigation if user not found
+//         }
+//     }
+// } else {
+//     include 'navigation.php';  // Default navigation for non-logged-in users
+// }
+?>
+<?php
+include 'config.php';
+session_start();
+
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    if (isset($_SESSION['table'])) {  // Check if table is set
+        if ($_SESSION['table'] === "donor") {
+            include 'usernav.php'; // Load donor navigation
+        } elseif ($_SESSION['table'] === "receiver") {
+            include 'receivernav.php'; // Load receiver navigation
+        } else {
+            include 'navigation.php'; // Default navigation
+        }
+    } else {
+        include 'navigation.php'; // Default navigation if table is missing
+    }
+} else {
+    include 'navigation.php'; // Default for non-logged-in users
+}
+?>
+
+

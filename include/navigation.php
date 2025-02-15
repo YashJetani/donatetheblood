@@ -20,16 +20,16 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="donate.php">Donate</a>
+        <a class="nav-link" href="donate.php">Sign Up</a>
       </li>
       
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="donor.php">Donors</a>
-      </li>
+      </li> -->
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="search.php">Search</a>
-      </li>
+      </li> -->
 
       <li class="nav-item">
         <a class="nav-link" href="signin.php">Sign In</a>
