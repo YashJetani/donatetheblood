@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
     
     session_start();
@@ -5,6 +6,14 @@
     include('include/navigation.php');
    
 ?>
+=======
+<?php
+	session_start();
+	include('../include/config.php');
+	include('include/navigation.php');
+?>
+
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40
 <!DOCTYPE html>
 
 	<head>
@@ -41,3 +50,7 @@
     <![endif]-->
 
 	</head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40

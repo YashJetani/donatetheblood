@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 ob_start();
 include "include/header.php";
 
@@ -54,6 +55,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     }
+=======
+	ob_start();
+	include ('include/header.php');
+	if(isset($_POST['SignIn'])){
+		if (isset($_POST['email']) && !empty($_POST['email'])) {
+			$email = $_POST['email'];
+		} else {
+			$emailError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>please fill Email filed.</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>';
+		}
+
+		if (isset($_POST['password']) && !empty($_POST['password'])) {
+			$password = $_POST['password'];
+			$password = md5($password);
+		} else {
+			$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>please enter password</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>';
+		}
+
+		// login 
+		if(isset($email) && isset($password)){
+
+			$sql = "SELECT * FROM donor WHERE email = '$email' AND password = '$password'";
+			$result = mysqli_query($connection,$sql);
+			if(mysqli_num_rows($result) > 0){
+				while ($row = mysqli_fetch_assoc($result)){
+
+					$_SESSION['user_id'] = $row['id'];
+					$_SESSION['name'] = $row['name'];
+					$_SESSION['save_life_date'] = $row['save_life_date'];		
+					//header('location: user/index.php');
+					header("Location: user/index.php");
+				}				
+
+				
+			}
+			else{
+				$submitError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>No record found, please enter valid email or password</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>';
+
+			}
+
+		}
+}
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40
 ?>
 
 

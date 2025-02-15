@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+<<<<<<< HEAD
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 
@@ -19,6 +20,16 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
     include 'navigation.php'; // Default for non-logged-in users
 }
 }
+=======
+	if (session_status() === PHP_SESSION_NONE) {
+		session_start();	
+		if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+			include 'usernav.php';
+		}else{
+			include 'navigation.php';
+		}
+	}
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40
 ?>
 <!DOCTYPE html>
 
@@ -54,7 +65,9 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 	</head>
 
 
+ 
 
+<<<<<<< HEAD
 <?php 
 //            include 'config.php';
             // include('..\include\config.php');
@@ -122,3 +135,5 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 ?>
 
 
+=======
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40

@@ -23,20 +23,22 @@
 <!-- 
       <li class="nav-item">
         <a class="nav-link" href="search.php">Search</a>
+<<<<<<< HEAD
       </li> -->
 
       <!-- <li class="nav-item">
         <a class="nav-link" href="signin.php">Signin</a>
       </li> -->
+=======
+      </li>
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40
       
       <li class="nav-item">
         <a class="nav-link" href="about.php">About Us</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-          <?php if(isset($_SESSION['name'])) echo $_SESSION['name']; ?> <!-- Donor Name -->
-        </a>
+<?php if(isset($_SESSION['name'])) echo $_SESSION['name']; ?></a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           
           <a class="dropdown-item" href="user/index.php"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>

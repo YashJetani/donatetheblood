@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 
 
 
-	include ('C://xampp/htdocs/DONATETHEBLOOD/include/config.php');
+	include ('/var/www/html/include/config.php');
 
 
 	// $sql = "SELECT * FROM donor WHERE id=" .$_SESSION['user_id'];
@@ -214,7 +214,11 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 			$sql = "UPDATE donor SET name='$name',gender='$gender',email='$email',city='$city',dob='$DonorDOB',contact_no='$contact_no',blood_group='$blood_group' WHERE id =" . $_SESSION['user_id'];
 
 			if (mysqli_query($connection, $sql)) {
+<<<<<<< HEAD
 				// header("location: update.php");
+=======
+			//	header("location: update.php");
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40
 				$updatesuccess = '<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<strong> Data Updated Successfully </strong>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -763,4 +767,8 @@ if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
 	// include 'include/sidebar.php';
 }
 include 'include/footer.php';
+<<<<<<< HEAD
 ?> 
+=======
+?> -->
+>>>>>>> 6c3cf47163697bdaeac0da01ca96eb5a8f1fbd40
